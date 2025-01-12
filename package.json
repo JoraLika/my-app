@@ -1,12 +1,17 @@
 {
-  "name": "my-app",
+  "name": "next-simple-crud-app",
   "version": "0.1.0",
   "private": true,
     "scripts": {
-      "dev": "next dev",
+      "dev": "next dev --turbo",
       "build": "next build",
       "start": "next start",
       "lint": "next lint"
+    },
+    "packageManager": "npm@10.8.2",
+    "overrides": {
+      "react": "$react",
+      "react-dom": "$react-dom"
     },
   "dependencies": {
     "react": "^19.0.0",
