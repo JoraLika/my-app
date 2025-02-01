@@ -10,9 +10,11 @@ export default async function Home({
 
   const posts = [
     {
-      _createdAt: "Yesterday",
+      _createdAt: new Date(),
       views: 55,
-      author: { _id: 1 },
+      author: { 
+          _id: 1 
+        },
       _id: 1,
       description: "This is a description",
       image:
@@ -44,7 +46,7 @@ export default async function Home({
         <ul className="mt-7 card_grid">
           {posts?.length > 0 ? (
             posts.map((post: StartupCardType, index: number) => (
-              <StartupCard key={post?.id || index} post={post} />
+              <StartupCard key={post?._id || index} post={post} />
             ))
           ) : (
             <p>No startups available.</p>
