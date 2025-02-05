@@ -1,13 +1,25 @@
-import { formatDate } from '@/lib/utils'
+import { formatDate } from 'lib/utils'
 import { EyeIcon } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import Image from "next/image";
 import { Button } from './ui/button'
+import { Author, Startup } from 'sanity/types';
+
+export type StartupTypeCard = Omit<Startup, "author"> & {author?: Author} 
 
 const StartupCard = ({post} : { post: StartupTypeCard}) => {
 
-   const { _createdAt, _id, views, author: { _id: authorId, name }, title, description, image, category } = post;
+   const { 
+      _createdAt, 
+      _id, 
+      views, 
+      author,
+      title, 
+      description, 
+      image, 
+      category 
+    } = post;
 
   return (
     <li className="startup-card group">
