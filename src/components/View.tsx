@@ -3,13 +3,13 @@
 import React from "react";
 import Ping from "./Ping";
 import { client } from "../sanity/lib/client";
-import { STARTUP_VIEWS_QYERY } from "../sanity/lib/queries";
+import { STARTUP_VIEWS_QUERY } from "../sanity/lib/queries";
 import { incrementViews } from "../sanity/lib/actions"; // Import the server action
 
 const View = async ({ id }: { id: string }) => {
   const { views: totalViews } = await client
     .withConfig({ useCdn: false })
-    .fetch(STARTUP_VIEWS_QYERY, { id });
+    .fetch(STARTUP_VIEWS_QUERY, { id });
 
   await incrementViews(id, totalViews); // Call the Server Action
 

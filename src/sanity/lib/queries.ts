@@ -11,35 +11,35 @@ export const STARTUPS_QUERY = `
     description, 
     category, 
     image
-  }
-`;
-export const STARTUP_BY_ID_QYERY = `
+  }`;
+
+export const STARTUP_BY_ID_QUERY = `
   *[_type == "startup" && _id == $id][0]{
     _id, 
     title,
     slug,
     _createdAt, 
     author -> {
-      _id, name, image, bio
+      _id, name, username, image, bio
     },
     views, 
     description, 
     category, 
     image,
     pitch
-  }
-`;
+  }`;
 
-export const STARTUP_VIEWS_QYERY = `
-  *[_type == "startup" && _id == $id][0]{_id, views}`;
+export const STARTUP_VIEWS_QUERY = `
+  *[_type == "startup" && _id == $id][0]{
+    _id, views
+  }`;
 
 
 export const AUTHOR_BY_GITHUB_ID_QUERY = `
-*[_type == "startup" && id == $id][0]{
+*[_type == "author" && id == $id][0]{
   _id, 
   id,
   name,
-  views,
   username,
   email,
   image,

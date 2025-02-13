@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import { client } from '../../../../sanity/lib/client'
-import { STARTUP_BY_ID_QYERY} from "../../../../sanity/lib/queries";
+import { STARTUP_BY_ID_QUERY} from "../../../../sanity/lib/queries";
 import { notFound } from 'next/navigation';
 import { formatDate } from 'lib/utils';
 import Link from 'next/link';
@@ -16,7 +16,7 @@ const md = markdownit();
 const Page = async({params} : {params: Promise<{id: string}>}) => {
     const id = (await params).id;
 
-    const post = await client.fetch(STARTUP_BY_ID_QYERY, {id});
+    const post = await client.fetch(STARTUP_BY_ID_QUERY, {id});
 
     if(!post) return notFound();
 
@@ -44,6 +44,7 @@ const Page = async({params} : {params: Promise<{id: string}>}) => {
               href={`/user/${post.author?._id}`}
               className="flex gap-2 items-center mb-3"
             >
+             {post.author?.image ? (
               <Image
                 src={post.author.image}
                 alt="avatar"
@@ -51,11 +52,20 @@ const Page = async({params} : {params: Promise<{id: string}>}) => {
                 height={64}
                 className="rounded-full drop-shadow-lg"
               />
+            ) : (
+              <Image
+                src="/logo.png" // Path to your fallback image
+                alt="default avatar"
+                width={64}
+                height={64}
+                className="rounded-full drop-shadow-lg"
+              />
+            )}
 
               <div>
-                <p className="text-20-medium">{post.author.name}</p>
+                <p className="text-20-medium">{post.author?.name || "Next.JS"}</p>
                 <p className="text-16-medium !text-black-300">
-                  @{post.author.username}
+                  @{post.author?.username || "NextJs"}
                 </p>
               </div>
             </Link>

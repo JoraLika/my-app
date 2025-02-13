@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { auth, signOut, signIn } from '../../auth';
+import Image from "next/image";
 
 const Navbar = async () => {
     const session = await auth();
@@ -9,7 +10,7 @@ const Navbar = async () => {
     <header className="px-5 py-3 bg-white shadow-sm font-work-sans">
       <nav className="flex justify-between items-center">
         <Link href="/">
-            <h1 className="text-black uppercase bold">social haus.</h1>
+            <Image src="/logo.png" alt="logo" width={144} height={30} />
         </Link>
 
         <div className="flex items-center gap-5 text-black">
